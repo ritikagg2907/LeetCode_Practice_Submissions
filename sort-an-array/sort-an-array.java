@@ -1,44 +1,34 @@
 class Solution {
     public int[] sortArray(int[] nums) {
-        merges(nums, 0, nums.length-1);
+        quick(nums, 0, nums.length-1);
         return nums;
     }
     
-    public void merges(int arr[], int s, int e){
-        if(s<e){
-            int mid = (s+e)/2;
-            merges(arr, s, mid);
-            merges(arr, mid+1,e);
-            merge(arr, s, mid, e);
+    public void quick(int arr[], int s, int e){
+        if(s>=e){
+            return ;
         }
-        return;
-    }
-    
-    public void merge(int arr[] , int s, int mid, int e){
-        int l[] = Arrays.copyOfRange(arr, s, mid+1);
-        int r[] = Arrays.copyOfRange(arr, mid+1, e+1);
-        int n1 = l.length;
-        int n2 = r.length;
-        int i=0,j=0,k=s;
-        while(i<n1 && j<n2){
-            if(l[i] <= r[j]){
-                arr[k] = l[i];
-                k++; i++;
+        int mid = (s+e)/2;
+        int i=s;
+        int j = e;
+        int pi = arr[mid];
+        while(i<=j){
+            while(arr[i] < pi){
+                i++;
             }
-            else{
-                arr[k] = r[j];
-                j++;k++;
+            while(arr[j] > pi){
+                j--;
+            }
+            if(i<=j){
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;
+                j--;
             }
         }
-        while(i<n1){
-            arr[k] = l[i];
-            k++; i++;
-        }
-        while(j<n2){
-            arr[k] = r[j];
-            j++;k++;
-        }
-        return ;
+        quick(arr, s, j);
+        quick(arr, i,e);
     }
    
 }
