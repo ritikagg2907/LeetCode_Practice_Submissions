@@ -4,7 +4,7 @@ class Solution {
         int r[] = right(heights);
         int max = 0;        
         for(int i = 0 ; i<l.length ; i++){
-            int w  =r[i] - l[i] + 1;
+            int w  =r[i] - l[i] - 1;
             int are = w*heights[i];
             max = Math.max(are,max);
         }
@@ -18,7 +18,7 @@ class Solution {
             while(!st.isEmpty() && arr[st.peek()] >= arr[i]){
                 st.pop();
             }
-            l[i] = st.isEmpty() ? 0: st.peek() + 1;
+            l[i] = st.isEmpty() ? -1: st.peek();
             st.push(i);
         }
         return l;
@@ -31,7 +31,7 @@ class Solution {
             while(!st.isEmpty() && arr[st.peek()] >= arr[i]){
                 st.pop();
             }
-            r[i] = st.isEmpty() ? arr.length-1: st.peek() - 1;
+            r[i] = st.isEmpty() ? arr.length: st.peek();
             st.push(i);
         }
         return r;
