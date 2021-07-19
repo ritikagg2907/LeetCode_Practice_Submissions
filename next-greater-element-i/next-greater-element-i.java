@@ -26,13 +26,13 @@ class Solution {
         int n = arr.length;
         int r[] = new int[n];
         Stack<Integer> st = new Stack<>();
-        for(int i=n-1;i>=0; i--){
+        for(int i=n-1; i>=0; i--){
             while(!st.isEmpty() && arr[st.peek()] < arr[i]){
                 st.pop();
             }
-            r[i] = st.isEmpty() ?  -1 : st.peek();
+            r[i] = st.isEmpty() ? -1 : st.peek();
             st.push(i);
         }
         return r;
-     }
+    }
 }
