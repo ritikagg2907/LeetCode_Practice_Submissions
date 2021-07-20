@@ -1,25 +1,29 @@
 class Solution {
     public int[] minOperations(String boxes) {
-        int arr[] = new int[boxes .length()];
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for(int i=0; i<boxes.length(); i++){
-            char c = boxes.charAt(i);
-            if(c == '1'){
-                map.put(i,1);
-            }
+        int n = boxes.length();
+        int arr[] = new int[n];
+        int l[] = new int[n];
+        int r[] = new int[n];
+        char ch[] = boxes.toCharArray();
+        int count = ch[0]  - '0';
+        l[0] = 0;
+        for(int i=1; i<n; i++){
+            l[i] = l[i-1] + count;
+            count += ch[i] - '0';
         }
-        if(map.size() == 0){
-            return arr;
+        
+        r[n-1] = 0;
+        count = ch[n-1] - '0';
+        
+        for(int i=n-2; i>=0; i--){
+            r[i] = r[i+1] + count;
+            count += ch[i] - '0';
         }
-        for(int i=0;i<boxes.length(); i++){
-            Set<Integer> temp = map.keySet();
-            int res = 0;
-            for(int j: temp){
-                res += Math.abs(i-j);
-            }
-            arr[i] = res;
+        
+        
+        for(int i=0;i<n;i++){
+            arr[i] = l[i] + r[i];
         }
         return arr;
-        
     }
 }
