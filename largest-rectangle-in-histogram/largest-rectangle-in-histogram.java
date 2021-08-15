@@ -1,21 +1,30 @@
 class Solution {
-    public int largestRectangleArea(int[] heights) {
-        int l[] = left(heights);
-        int r[] = right(heights);
-        int max = 0;        
-        for(int i = 0 ; i<l.length ; i++){
-            int w  =r[i] - l[i] - 1;
-            int are = w*heights[i];
-            max = Math.max(are,max);
+    public int largestRectangleArea(int[] arr) {
+        int l[] = left(arr);
+        int r[] = right(arr);
+        
+        for(int i:l){
+            System.out.print(i + " " );
+        }
+        System.out.println();
+        for(int i:r){
+            System.out.print(i + " " );
+        }
+        int max = 0;
+        for(int i=0;i<arr.length; i++){
+            int h = r[i] - l[i] -1;
+            int w = arr[i];
+            max = Math.max(max, h*w);
         }
         return max;
     }
     
-    public int[] left(int arr[]){
-        int l[] = new int[arr.length];
+    public int[]  left(int arr[]){
+        int n = arr.length;
+        int l[] = new int[n];
         Stack<Integer> st = new Stack<>();
-        for(int i=0;i<arr.length;i++){
-            while(!st.isEmpty() && arr[st.peek()] >= arr[i]){
+        for(int i=0;i<n;i++){
+            while(!st.isEmpty() && arr[st.peek()] >=arr[i]){
                 st.pop();
             }
             l[i] = st.isEmpty() ? -1: st.peek();
@@ -24,16 +33,17 @@ class Solution {
         return l;
     }
     
-    public int[] right(int arr[]){
-        int r[] = new int[arr.length];
+    public int[]  right(int arr[]){
+        int n = arr.length;
+        int l[] = new int[n];
         Stack<Integer> st = new Stack<>();
-        for(int i=arr.length - 1;i>=0;i--){
-            while(!st.isEmpty() && arr[st.peek()] >= arr[i]){
+        for(int i=n-1 ;i >= 0;i--){
+            while(!st.isEmpty() && arr[st.peek()] >=arr[i]){
                 st.pop();
             }
-            r[i] = st.isEmpty() ? arr.length: st.peek();
+            l[i] = st.isEmpty() ? n: st.peek();
             st.push(i);
         }
-        return r;
+        return l;
     }
 }
