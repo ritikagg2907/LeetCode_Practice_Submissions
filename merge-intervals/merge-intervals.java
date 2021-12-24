@@ -23,21 +23,11 @@ class Solution {
         while(!st.isEmpty()){
             st1.push(st.pop());
         }
-        // System.out.println(st1.size());
         int res[][] = new int[st1.size()][2];
         int n = st1.size();
         for(int i=0;i<n;i++){
             res[i] = st1.pop();
         }
         return res;
-        // for(int[] num : intervals){
-        //     if(arr.isEmpty() || arr.getLast()[1]<num[0]){
-        //         arr.add(num);
-        //     }
-        //     else{
-        //         arr.getLast()[1] = Math.max(arr.getLast()[1],num[1]);
-        //     }
-        // }
-        // return arr.toArray(new int[arr.size()][]);
     }
 }
