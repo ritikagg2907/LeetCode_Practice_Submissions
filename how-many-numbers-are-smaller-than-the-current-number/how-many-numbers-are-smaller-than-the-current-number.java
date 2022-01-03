@@ -9,14 +9,13 @@ class Solution {
         for(int i=0;i<nums.length; i++){
             arr[nums[i]]++;
         }
-       
-        int res2[] = new int[arr.length];
-        for(int i=1;i<max+1;i++) {
-        	res2[i] = arr[i-1]+res2[i-1];
+        for(int  i=1;i<max+1;i++){
+            arr[i] += arr[i-1];
         }
-        for(int i=0;i<nums.length;i++) {
-        	res[i] = res2[nums[i]];
+        for(int i=0;i<nums.length;i++){
+            int b = nums[i];
+            nums[i] = b==0? 0:arr[b-1];
         }
-        return res;
+        return nums;
     }
 }
