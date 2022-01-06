@@ -14,17 +14,18 @@ class Solution {
         if(p.size() == 0){
             return 0;
         }
-        else if(p.size() == 1){
-            return p.remove();
-        }
-        else{
-        int a = p.remove();
-        int b = p.remove();
-        if(a!=b){
-            p.add(Math.abs(a-b));
-        }
+        // else if(p.size() == 1){
+        //     return p.remove();
+        // }
         return p.remove();
-        }
+        // else{
+        // int a = p.remove();
+        // int b = p.remove();
+        // if(a!=b){
+        //     p.add(Math.abs(a-b));
+        // }
+        // return p.remove();
+        // }
         
     }
 }
