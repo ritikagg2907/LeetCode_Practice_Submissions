@@ -10,23 +10,36 @@
  */
 class Solution {
     public int pairSum(ListNode head) {
-        ListNode cur = head;
-        ListNode temp = head;
-        int n = 0;
-        while(temp != null){
-            temp = temp.next;
-            n++;
+        if(head == null){
+            return 0;
         }
-        int arr[] = new int[n/2];
-        for(int i =0 ;i < n/2;i++){
-            arr[i] = cur.val;
-            cur = cur.next;
+        ListNode slow = head;
+        ListNode fast = head;
+        while(fast != null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
         }
-        int max = 0;
-        for(int i = n/2-1 ;i >=0 ; i--){
-            max = Math.max(max, cur.val+arr[i]);
-            cur = cur.next;
+        slow = reverse(slow);
+        fast = head;
+        int sum = Integer.MIN_VALUE;
+        while (slow != null) {
+            sum = Math.max(slow.val + fast.val, sum);
+            slow = slow.next;
+            fast = fast.next;
         }
-        return max;
+        return sum;
+    }
+    
+    
+    public ListNode reverse(ListNode node){
+        ListNode cur = node;
+        ListNode prev = null;
+        while(cur != null){
+            ListNode temp = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = temp;
+        }
+        return prev;
     }
 }
