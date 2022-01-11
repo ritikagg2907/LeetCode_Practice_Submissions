@@ -14,31 +14,28 @@
  * }
  */
 class Solution {
+    int res = 0;
     public int sumRootToLeaf(TreeNode root) {
         ArrayList<String> arr = new ArrayList<>();
         String s = "";
-        sum(root, s, arr);
-        int res = 0;
-        for(String str : arr){
-            res += Integer.parseInt(str, 2);
-        }
+        sum(root, s);
         return res;
     }
     
-    public void sum(TreeNode root, String str, ArrayList<String> arr){
+    public void sum(TreeNode root, String str){
         if(root == null){
             return ;
         }
         if(root.left == null && root.right == null){
             str += Integer.toString(root.val);
-            arr.add(str);
+            res += Integer.parseInt(str, 2);
             return;
         }
         if(root.left != null){
-            sum(root.left, str+Integer.toString(root.val), arr);
+            sum(root.left, str+Integer.toString(root.val));
         }
         if(root.right != null){
-            sum(root.right, str+Integer.toString(root.val) , arr);
+            sum(root.right, str+Integer.toString(root.val));
         }
     }
 }
