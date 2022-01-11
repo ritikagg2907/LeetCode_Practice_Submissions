@@ -1,24 +1,19 @@
 class Solution {
     public int subarraySum(int[] nums, int k) {
+        
         HashMap<Integer, Integer> map = new HashMap<>();
-        map.put(0,1);
+        int res = 0;
         int sum = 0;
-        int res=0;
-        for(int i : nums){
-            sum += i;
-            int cur = sum - k;
-            if(map.containsKey(cur)){
-                res += map.get(cur);
+        map.put(0,1);
+        for(int i=0; i < nums.length; i++){
+            sum += nums[i];
+            int rsum = sum - k;
+            if(map.containsKey(rsum)){
+                res += map.get(rsum);
             }
-            if(map.containsKey(sum)){
-                int b = map.get(sum);
-                b++;
-                map.put(sum,b);
-            }
-            else{
-                map.put(sum, 1);
-            }
+            map.put(sum , map.getOrDefault(sum, 0)+1);
         }
+        
         return res;
         
         
@@ -48,21 +43,29 @@ class Solution {
         
         
         
-//         int count = 0;
-// 	    int i=0;int j=0;
-// 	    int csum = 0;
-// 	    while(j<nums.length) {
-// //	    	System.out.println("Something");
-// 	    	csum += nums[j];
-// 	    	j++;
-// 	    	while(i<j && csum > k) {
-// 	    		csum -= nums[i];
-// 	    		i++;
-// 	    	}
-// 	    	if(csum == k) {
-// 	    		count ++;
-// 	    	}
-// 	    }
-// 		return count;
+        
+        
+        
+        
+        // HashMap<Integer, Integer> map = new HashMap<>();
+        // map.put(0,1);
+        // int sum = 0;
+        // int res=0;
+        // for(int i : nums){
+        //     sum += i;
+        //     int cur = sum - k;
+        //     if(map.containsKey(cur)){
+        //         res += map.get(cur);
+        //     }
+        //     if(map.containsKey(sum)){
+        //         int b = map.get(sum);
+        //         b++;
+        //         map.put(sum,b);
+        //     }
+        //     else{
+        //         map.put(sum, 1);
+        //     }
+        // }
+        // return res;
     }
 }
