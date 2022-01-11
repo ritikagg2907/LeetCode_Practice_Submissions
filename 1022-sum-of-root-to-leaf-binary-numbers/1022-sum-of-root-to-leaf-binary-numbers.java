@@ -16,7 +16,6 @@
 class Solution {
     int res = 0;
     public int sumRootToLeaf(TreeNode root) {
-        ArrayList<String> arr = new ArrayList<>();
         String s = "";
         sum(root, s);
         return res;
