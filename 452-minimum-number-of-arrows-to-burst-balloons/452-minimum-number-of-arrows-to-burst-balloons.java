@@ -1,9 +1,7 @@
 class Solution {
     public int findMinArrowShots(int[][] nums) {
         
-        Arrays.sort(nums, (int[] p1, int[] p2)->{
-            return p1[1] < p2[1] ? -1 : 1; 
-        });
+        Arrays.sort(nums, (a, b) -> Integer.compare(a[1], b[1]));
         int e = nums[0][1];
         int res = 1;
         for(int arr[] : nums){
