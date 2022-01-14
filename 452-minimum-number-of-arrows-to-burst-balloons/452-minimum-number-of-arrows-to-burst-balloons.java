@@ -4,10 +4,10 @@ class Solution {
         Arrays.sort(nums, (a, b) -> Integer.compare(a[1], b[1]));
         int e = nums[0][1];
         int res = 1;
-        for(int arr[] : nums){
-            if(arr[0] > e){
+        for(int i=0; i<nums.length; i++){
+            if(nums[i][0] > e){
                 res++;
-                e = arr[1];
+                e = nums[i][1];
             }
         }
         return res;
